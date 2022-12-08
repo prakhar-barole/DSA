@@ -14,6 +14,74 @@ class Solution:
         # code here
         # return head of sum list
         
+        ''' Method 2: converting to array then adding digits'''
+        f=first
+        arr1=[]
+        while(f):
+            arr1.append(f.data)
+            f=f.next
+            
+        l1=len(arr1)
+        
+        s=second
+        arr2=[]
+        while(s):
+            arr2.append(s.data)
+            s=s.next
+           
+        l2=len(arr2)
+        
+        q=0
+        d=0
+        i=0
+        j=0
+        x=1
+        
+        arr3=[]
+        if(l1>=l2):
+            i=l1
+            j=l2
+        else:
+            i=l2
+            j=l1
+        
+        for x in range(1,i+1):
+            if(x<=j):
+                d=(q+arr1[l1-x]+arr2[l2-x])%10
+                arr3.insert(0,int(d))
+                q=int((q+arr1[l1-x]+arr2[l2-x])/10)
+            
+            else:
+                if(l1>l2):
+                    d=(q+arr1[l1-x])%10
+                    arr3.insert(0,int(d))
+                    q=int(q+arr1[l1-x])/10
+
+                else:
+                    d=(q+arr2[l2-x])%10
+                    arr3.insert(0,int(d))
+                    q=int((q+arr2[l2-x])/10)
+
+
+        if(int(q)>0):
+            arr3.insert(0,int(q))
+        
+        
+        node1=Node(arr3[len(arr3)-1])
+        i=len(arr3)-2
+        
+        while (i>=0):
+            node2=Node(0)
+            node2.data=arr3[i]
+            node2.next=node1
+            node1=node2
+            i-=1
+            
+        return node1
+        
+    
+        ''' Method 1 by converting to numbers then adding'''
+        '''
         f=first
         arr1=[]
         while(f):
@@ -54,22 +122,7 @@ class Solution:
         node1=Node(int(s%10))
         s=s/10
         
-        '''
-        node2=Node(0)
-        d=s%10
-        s=s/10
-        node2.data=int(d)
-        node2.next=node1
-        node1=node2
-        
-        node2=Node(0)
-        d=s%10
-        s=s/10
-        node2.data=int(d)
-        node2.next=node1
-        node1=node2
-        
-        '''
+     
         while(s>=1):
             node2=Node(0)
             d=s%10
@@ -81,7 +134,7 @@ class Solution:
         
         return node1    
     
-        
+        '''
         
         
         
