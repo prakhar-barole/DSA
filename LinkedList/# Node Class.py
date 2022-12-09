@@ -1,5 +1,7 @@
 # Node Class
 
+#Node constructor
+
 class node:
     def __init__(self, val):
         self.data = val
